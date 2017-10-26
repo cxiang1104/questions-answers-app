@@ -14,4 +14,8 @@ Public Class welcome
     Private Sub welcome_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadQuestions()
     End Sub
+
+    Private Sub CreateQuestionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateQuestionToolStripMenuItem.Click
+        CreateQuestion.ShowDialog()
+    End Sub
 End Class
