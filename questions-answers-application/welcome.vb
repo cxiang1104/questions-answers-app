@@ -1,4 +1,5 @@
-﻿
+﻿Imports System.Data.SqlClient
+
 Public Class welcome
     Protected db As New db
     Protected Sub LoadQuestions()
@@ -36,7 +37,7 @@ Public Class welcome
         Dim confirmed As Integer = MessageBox.Show("Are you sure you want to delete this?", "Delete", MessageBoxButtons.YesNoCancel)
 
         If confirmed = DialogResult.Yes Then
-            db.sql = "DELETE FROM question WhERE id = @question_id"
+            db.sql = "DELETE From questions Where id  = @question_id"
             db.bind("@question_id", getQuestionId())
             db.execute()
             LoadQuestions()
@@ -44,7 +45,16 @@ Public Class welcome
     End Sub
 
     Private Sub ShowAnswersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowAnswersToolStripMenuItem.Click
-        Dim answersForm As New AnswersForm(getQuestionId())
-        answersForm.ShowDialog()
+
+        My.Forms.ShowAnswers.Show()
+
+        'Dim id As String = dgvQuestions.Item("id", dgvQuestions.CurrentRow.Index).Value.ToString()
+        'Dim AnswersForm = New AnswersForm(id)
+        'AnswersForm.ShowDialog()
+
+    End Sub
+
+    Private Sub dgvQuestions_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvQuestions.CellContentClick
+
     End Sub
 End Class
